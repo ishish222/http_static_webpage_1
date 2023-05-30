@@ -5,11 +5,15 @@ phases:
     commands:
       - echo Installing Amazon EFS Utils...
       - sudo yum -y install amazon-efs-utils
+  pre_build:
+    commands:
+      - echo Configuring EFS utils...
+      - sudo cp efs-utils.conf /etc/amazon/efs/efs-utils.conf
   build:
     commands:
       - echo Mounting EFS...
       - mkdir ~/efs
-      - sudo mount -t efs -o tls,iam,region=eu-central-1 fs-12345678:/ ~/efs  # replace with your EFS File System ID
+      - sudo mount -t efs -o tls,iam fs-054f1b69462653515:/ ~/efs  # replace with your EFS File System ID
   post_build:
     commands:
       - echo Copying files to EFS...
