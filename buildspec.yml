@@ -18,3 +18,4 @@ phases:
     commands:
       - echo Copying files to EFS...
       - cp -R ./* ~/efs/
+
