@@ -1,0 +1,16 @@
+version: 0.2
+
+phases:
+  install:
+    commands:
+      - echo Installing Amazon EFS Utils...
+      - sudo yum -y install amazon-efs-utils
+  build:
+    commands:
+      - echo Mounting EFS...
+      - mkdir ~/efs
+      - sudo mount -t efs fs-054f1b69462653515:/ ~/efs  # replace with your EFS File System ID
+  post_build:
+    commands:
+      - echo Copying files to EFS...
+      - cp -R ./http_root/* ~/efs/
