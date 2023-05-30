@@ -3,6 +3,7 @@ version: 0.2
 phases:
   install:
     commands:
+      - pip install botocore
       - echo Installing Amazon EFS Utils...
       - sudo yum -y install amazon-efs-utils
   pre_build:
