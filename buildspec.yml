@@ -9,8 +9,9 @@ phases:
     commands:
       - echo Mounting EFS...
       - mkdir ~/efs
-      - sudo mount -t efs fs-054f1b69462653515:/ ~/efs  # replace with your EFS File System ID
+      - echo "eu-central-1" > /tmp/aws-region
+      - sudo mount -t efs -o tls,iam,region=$(cat /tmp/aws-region) fs-12345678:/ ~/efs  # replace with your EFS File System ID
   post_build:
     commands:
       - echo Copying files to EFS...
-      - cp -R ./http_root/* ~/efs/
+      - cp -R ./* ~/efs/
